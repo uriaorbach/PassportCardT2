@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TestRating
+﻿namespace TestRating
 {
     class Program
     {

@@ -1,9 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
-using PassportCardT2;
-using System;
-using System.IO;
+﻿using PassportCardT2;
 
 namespace TestRating
 {
@@ -27,7 +22,7 @@ namespace TestRating
 
             if (policy != null)
             {
-                policy.Rate();
+               Rating = policy.Rate();
             }
 
             Console.WriteLine("Rating completed.");

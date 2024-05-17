@@ -1,19 +1,16 @@
-﻿using System;
-
-namespace TestRating
+﻿namespace TestRating
 {
 
     public interface IPolicy
     {
-        public PolicyType PolicyType { get; }
         #region General Policy Prop
+        public PolicyType PolicyType { get; }
         public string? FullName { get; set; }
         public DateTime DateOfBirth { get; set; }
-
         public decimal Rating {  get; set; }
         #endregion
 
-        public void Rate();
+        public decimal Rate();
        
 
      

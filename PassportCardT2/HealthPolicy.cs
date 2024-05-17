@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestRating;
+﻿using TestRating;
 
 namespace PassportCardT2
 {
     public class HealthPolicy : IPolicy
     {
-      
+
+        private const int _smallDeductible = 500;
+        private const int _majorDeductible = 800;
+        private const decimal _lowRating = 900m;
+        private const decimal _midRating = 1000m;
+        private const decimal _highRating = 1100m;
+
         public PolicyType PolicyType { get; } = PolicyType.Health;
         public string? Gender { get; set; }
         public decimal Deductible { get; set; }
@@ -18,28 +19,16 @@ namespace PassportCardT2
         public decimal Rating { get; set; }
 
 
-        public void Rate()
+        public decimal Rate()
         {
             Console.WriteLine("Rating HEALTH policy...");
             Console.WriteLine("Validating policy.");
-            if (ValidatePolicy() == false) return;
+            if (ValidatePolicy() == false) return Rating; ;
 
-            if (this.Gender == "Male")
-            {
-                if (this.Deductible < 500)
-                {
-                    Rating = 1000m;
-                }
-                Rating = 900m;
-            }
-            else
-            {
-                if (this.Deductible < 800)
-                {
-                    Rating = 1100m;
-                }
-                Rating = 1000m;
-            }
+            decimal baseRate = CalculateBaseRate();
+            Rating = baseRate;
+
+            return Rating;
         }
 
         private bool ValidatePolicy()
@@ -50,6 +39,26 @@ namespace PassportCardT2
                 return false;
             }
             return true;
+        }
+
+        private decimal CalculateBaseRate()
+        {
+            if (this.Gender == "Male")
+            {
+                if (this.Deductible < _smallDeductible)
+                {
+                    return _midRating;
+                }
+                return _lowRating;
+            }
+            else
+            {
+                if (this.Deductible < _majorDeductible)
+                {
+                    return 1100m;
+                }
+                return _highRating;
+            }
         }
     }
 }
