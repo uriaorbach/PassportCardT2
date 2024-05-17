@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PassportCardT2
+namespace PassportCardT2.Utils
 {
     public static class Helpers
     {

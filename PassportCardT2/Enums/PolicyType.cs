@@ -1,4 +1,4 @@
-﻿namespace TestRating
+﻿namespace PassportCardT2.Enums
 {
     public enum PolicyType
     {

@@ -1,6 +1,7 @@
-﻿using TestRating;
+﻿using PassportCardT2.Enums;
+using PassportCardT2.Interfaces;
 
-namespace PassportCardT2
+namespace PassportCardT2.Policies
 {
     public class HealthPolicy : IPolicy
     {
@@ -33,7 +34,7 @@ namespace PassportCardT2
 
         private bool ValidatePolicy()
         {
-            if (String.IsNullOrEmpty(this.Gender))
+            if (string.IsNullOrEmpty(Gender))
             {
                 Console.WriteLine("Health policy must specify Gender");
                 return false;
@@ -43,9 +44,9 @@ namespace PassportCardT2
 
         private decimal CalculateBaseRate()
         {
-            if (this.Gender == "Male")
+            if (Gender == "Male")
             {
-                if (this.Deductible < _smallDeductible)
+                if (Deductible < _smallDeductible)
                 {
                     return _midRating;
                 }
@@ -53,7 +54,7 @@ namespace PassportCardT2
             }
             else
             {
-                if (this.Deductible < _majorDeductible)
+                if (Deductible < _majorDeductible)
                 {
                     return 1100m;
                 }

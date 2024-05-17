@@ -1,6 +1,6 @@
-﻿using PassportCardT2;
+﻿using PassportCardT2.Factories;
 
-namespace TestRating
+namespace PassportCardT2.Main
 {
     /// <summary>
     /// The RatingEngine reads the policy application details from a file and produces a numeric 
@@ -16,13 +16,13 @@ namespace TestRating
             Console.WriteLine("Starting rate.");
             Console.WriteLine("Loading policy.");
 
-            if(string.IsNullOrEmpty(policyJson)) return;
+            if (string.IsNullOrEmpty(policyJson)) return;
 
             var policy = policyFactory.CreatePolicy(policyJson);
 
             if (policy != null)
             {
-               Rating = policy.Rate();
+                Rating = policy.Rate();
             }
 
             Console.WriteLine("Rating completed.");

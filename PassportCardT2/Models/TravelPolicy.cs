@@ -1,6 +1,7 @@
-﻿using TestRating;
+﻿using PassportCardT2.Enums;
+using PassportCardT2.Interfaces;
 
-namespace PassportCardT2
+namespace PassportCardT2.Policies
 {
     public class TravelPolicy : IPolicy
     {
@@ -27,7 +28,7 @@ namespace PassportCardT2
 
             return Rating;
         }
-      
+
         private bool ValidatePolicy()
         {
 
@@ -44,7 +45,7 @@ namespace PassportCardT2
                 Console.WriteLine($"Travel policy cannot be more than {_maxTravelDays} Days.");
                 return false;
             }
-            if (String.IsNullOrEmpty(Country))
+            if (string.IsNullOrEmpty(Country))
             {
                 Console.WriteLine("Travel policy must specify country.");
                 return false;

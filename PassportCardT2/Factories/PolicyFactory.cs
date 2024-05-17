@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using TestRating;
+using PassportCardT2.Enums;
+using PassportCardT2.Interfaces;
+using PassportCardT2.Policies;
 
-namespace PassportCardT2
+namespace PassportCardT2.Factories
 {
     public class PolicyFactory
     {

@@ -1,6 +1,8 @@
-﻿using TestRating;
+﻿using PassportCardT2.Enums;
+using PassportCardT2.Interfaces;
+using PassportCardT2.Utils;
 
-namespace PassportCardT2
+namespace PassportCardT2.Policies
 {
     public class LifePolicy : IPolicy
     {
@@ -22,10 +24,10 @@ namespace PassportCardT2
 
             if (ValidatePolicy() == false) return Rating;
 
-            int age = Helpers.CalculateAge(this.DateOfBirth);
+            int age = Helpers.CalculateAge(DateOfBirth);
             decimal baseRate = CalculateBaseRate(age);
-            decimal finalRate = ApplySmokerMultiplier(baseRate,this.IsSmoker);
-         
+            decimal finalRate = ApplySmokerMultiplier(baseRate, IsSmoker);
+
             Rating = finalRate;
             return Rating;
         }
@@ -34,9 +36,9 @@ namespace PassportCardT2
         {
             const int _maxEligibleCoverageAge = 100;
 
-            var age = Helpers.CalculateAge(this.DateOfBirth);
+            var age = Helpers.CalculateAge(DateOfBirth);
 
-            if (this.DateOfBirth == DateTime.MinValue)
+            if (DateOfBirth == DateTime.MinValue)
             {
                 Console.WriteLine("Life policy must include Date of Birth.");
                 return false;
@@ -46,7 +48,7 @@ namespace PassportCardT2
                 Console.WriteLine($"Max eligible age for coverage is {_maxEligibleCoverageAge} years.");
                 return false;
             }
-            if (this.Amount == 0)
+            if (Amount == 0)
             {
                 Console.WriteLine("Life policy must include an Amount.");
                 return false;
@@ -56,7 +58,7 @@ namespace PassportCardT2
 
         private decimal CalculateBaseRate(int age)
         {
-            return this.Amount * age / _baseLifeRatingDivider;
+            return Amount * age / _baseLifeRatingDivider;
         }
 
         private decimal ApplySmokerMultiplier(decimal baseRate, bool isSmoker)
@@ -68,6 +70,6 @@ namespace PassportCardT2
             return baseRate;
         }
 
-      
+
     }
 }

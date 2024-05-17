@@ -1,4 +1,6 @@
-﻿namespace TestRating
+﻿using PassportCardT2.Main;
+
+namespace PassportCardT2
 {
     class Program
     {
