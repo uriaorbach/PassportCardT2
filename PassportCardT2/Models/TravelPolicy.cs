@@ -22,8 +22,8 @@ namespace PassportCardT2.Policies
             Console.WriteLine("Validating policy.");
             if (ValidatePolicy() == false) return Rating;
 
-            decimal baseRate = CalculateBaseRate();
-            decimal finalRate = ApplyItalyMultiplier(baseRate);
+            var baseRate = CalculateBaseRate();
+            var finalRate = ApplyItalyMultiplier(baseRate);
             Rating = finalRate;
 
             return Rating;

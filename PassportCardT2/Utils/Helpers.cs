@@ -10,7 +10,7 @@ namespace PassportCardT2.Utils
     {
         public static int CalculateAge(DateTime birthDay)
         {
-            int age = DateTime.Today.Year - birthDay.Year;
+            var age = DateTime.Today.Year - birthDay.Year;
 
             if (IsBirthdayNotYetOccurredThisYear(birthDay))
             {

@@ -24,9 +24,9 @@ namespace PassportCardT2.Policies
         {
             Console.WriteLine("Rating HEALTH policy...");
             Console.WriteLine("Validating policy.");
-            if (ValidatePolicy() == false) return Rating; ;
+            if (ValidatePolicy() == false) return Rating;
 
-            decimal baseRate = CalculateBaseRate();
+            var baseRate = CalculateBaseRate();
             Rating = baseRate;
 
             return Rating;

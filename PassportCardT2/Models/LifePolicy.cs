@@ -24,9 +24,9 @@ namespace PassportCardT2.Policies
 
             if (ValidatePolicy() == false) return Rating;
 
-            int age = Helpers.CalculateAge(DateOfBirth);
-            decimal baseRate = CalculateBaseRate(age);
-            decimal finalRate = ApplySmokerMultiplier(baseRate, IsSmoker);
+            var age = Helpers.CalculateAge(DateOfBirth);
+            var baseRate = CalculateBaseRate(age);
+            var finalRate = ApplySmokerMultiplier(baseRate, IsSmoker);
 
             Rating = finalRate;
             return Rating;
