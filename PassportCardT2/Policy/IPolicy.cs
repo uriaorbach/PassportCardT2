@@ -1,8 +1,7 @@
 ﻿using PassportCardT2.Enums;
 
-namespace PassportCardT2.Interfaces
+namespace PassportCardT2.Policy
 {
-
     public interface IPolicy
     {
         #region General Policy Prop
@@ -11,10 +10,6 @@ namespace PassportCardT2.Interfaces
         public DateTime DateOfBirth { get; set; }
         public decimal Rating { get; set; }
         #endregion
-
         public decimal Rate();
-
-
-
     }
 }

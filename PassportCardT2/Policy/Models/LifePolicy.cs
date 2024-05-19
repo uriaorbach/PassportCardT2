@@ -1,8 +1,8 @@
 ﻿using PassportCardT2.Enums;
-using PassportCardT2.Interfaces;
+using PassportCardT2.IO;
 using PassportCardT2.Utils;
 
-namespace PassportCardT2.Policies
+namespace PassportCardT2.Policy.Models
 {
     public class LifePolicy : IPolicy
     {
@@ -19,8 +19,8 @@ namespace PassportCardT2.Policies
 
         public decimal Rate()
         {
-            Console.WriteLine("Rating LIFE policy...");
-            Console.WriteLine("Validating policy.");
+            Logger.WriteLine("Rating LIFE policy...");
+            Logger.WriteLine("Validating policy.");
 
             if (ValidatePolicy() == false) return Rating;
 
@@ -40,17 +40,17 @@ namespace PassportCardT2.Policies
 
             if (DateOfBirth == DateTime.MinValue)
             {
-                Console.WriteLine("Life policy must include Date of Birth.");
+                Logger.WriteError("Life policy must include Date of Birth.");
                 return false;
             }
             if (age > _maxEligibleCoverageAge)
             {
-                Console.WriteLine($"Max eligible age for coverage is {_maxEligibleCoverageAge} years.");
+                Logger.WriteError($"Max eligible age for coverage is {_maxEligibleCoverageAge} years.");
                 return false;
             }
             if (Amount == 0)
             {
-                Console.WriteLine("Life policy must include an Amount.");
+                Logger.WriteError("Life policy must include an Amount.");
                 return false;
             }
             return true;

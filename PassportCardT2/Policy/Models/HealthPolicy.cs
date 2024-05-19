@@ -1,11 +1,10 @@
 ﻿using PassportCardT2.Enums;
-using PassportCardT2.Interfaces;
+using PassportCardT2.IO;
 
-namespace PassportCardT2.Policies
+namespace PassportCardT2.Policy.Models
 {
     public class HealthPolicy : IPolicy
     {
-
         private const int _smallDeductible = 500;
         private const int _majorDeductible = 800;
         private const decimal _lowRating = 900m;
@@ -19,11 +18,10 @@ namespace PassportCardT2.Policies
         public DateTime DateOfBirth { get; set; }
         public decimal Rating { get; set; }
 
-
         public decimal Rate()
         {
-            Console.WriteLine("Rating HEALTH policy...");
-            Console.WriteLine("Validating policy.");
+            Logger.WriteLine("Rating HEALTH policy...");
+            Logger.WriteLine("Validating policy.");
             if (ValidatePolicy() == false) return Rating;
 
             var baseRate = CalculateBaseRate();
@@ -36,7 +34,7 @@ namespace PassportCardT2.Policies
         {
             if (string.IsNullOrEmpty(Gender))
             {
-                Console.WriteLine("Health policy must specify Gender");
+               Logger.WriteError("Health policy must specify Gender");
                 return false;
             }
             return true;
@@ -56,9 +54,9 @@ namespace PassportCardT2.Policies
             {
                 if (Deductible < _majorDeductible)
                 {
-                    return 1100m;
+                    return _highRating;
                 }
-                return _highRating;
+                return _midRating;
             }
         }
     }

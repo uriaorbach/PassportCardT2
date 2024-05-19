@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PassportCardT2.Enums;
-using PassportCardT2.Interfaces;
-using PassportCardT2.Policies;
+using PassportCardT2.IO;
+using PassportCardT2.Policy.Models;
 
-namespace PassportCardT2.Factories
+namespace PassportCardT2.Policy
 {
     public class PolicyFactory
     {
@@ -37,22 +37,22 @@ namespace PassportCardT2.Factories
             }
             catch (NotSupportedException ex)
             {
-                Console.WriteLine(ex.Message);
+                Logger.WriteError(ex.Message);
                 return null;
             }
             catch (JsonReaderException ex)
             {
-                Console.WriteLine(ex.Message);
+                Logger.WriteError(ex.Message);
                 return null;
             }
             catch (ArgumentException ex)
             {
-                Console.WriteLine(ex.Message);
+                Logger.WriteError(ex.Message);
                 return null;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Logger.WriteError(ex.Message);
                 return null;
             }
         }

@@ -1,4 +1,5 @@
-﻿using PassportCardT2.Main;
+﻿using PassportCardT2.IO;
+using PassportCardT2.Main;
 using System.Net.WebSockets;
 
 namespace PassportCardT2
@@ -8,33 +9,31 @@ namespace PassportCardT2
         static void Main(string[] args)
         {
             var filePath = "policy.json";
+            var fileReader = new FileReader();
+
             try
             {
-
-                // load policy - open file policy.json
-                var policyJson = File.ReadAllText(filePath);
-
-                Console.WriteLine("Insurance Rating System Starting...");
+                var policyJson = fileReader.ReadFileContent(filePath);
+                if (string.IsNullOrEmpty(policyJson))
+                {
+                    Logger.WriteError($"file {filePath} is empty, could not read policy");
+                    return;
+                }
+                Logger.WriteLine("Insurance Rating System Starting...");
 
                 var engine = new RatingEngine();
                 engine.Rate(policyJson);
 
-                if (engine.Rating > 0)
-                {
-                    Console.WriteLine($"Rating: {engine.Rating}");
-                }
-                else
-                {
-                    Console.WriteLine("No rating produced.");
-                }
+                Logger.WriteLine(engine.Rating > 0 ? $"Rating: {engine.Rating}" : "No rating produced.");
+
             }
             catch (IOException ex)
             {
-                Console.WriteLine(ex.Message);
+                Logger.WriteError(ex.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Logger.WriteError(ex.Message);
             }
 
         }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PassportCardT2.Utils
+﻿namespace PassportCardT2.Utils
 {
     public static class Helpers
     {
@@ -21,8 +15,8 @@ namespace PassportCardT2.Utils
         }
         private static bool IsBirthdayNotYetOccurredThisYear(DateTime birthDay)
         {
-            return birthDay.Month == DateTime.Today.Month &&
-               DateTime.Today.Day < birthDay.Day ||
+            return (birthDay.Month == DateTime.Today.Month &&
+               DateTime.Today.Day < birthDay.Day) ||
                DateTime.Today.Month < birthDay.Month;
         }
     }

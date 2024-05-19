@@ -1,7 +1,7 @@
 ﻿using PassportCardT2.Enums;
-using PassportCardT2.Interfaces;
+using PassportCardT2.IO;
 
-namespace PassportCardT2.Policies
+namespace PassportCardT2.Policy.Models
 {
     public class TravelPolicy : IPolicy
     {
@@ -15,11 +15,10 @@ namespace PassportCardT2.Policies
         public DateTime DateOfBirth { get; set; }
         public decimal Rating { get; set; }
 
-
         public decimal Rate()
         {
-            Console.WriteLine("Rating TRAVEL policy...");
-            Console.WriteLine("Validating policy.");
+            Logger.WriteLine("Rating TRAVEL policy...");
+            Logger.WriteLine("Validating policy.");
             if (ValidatePolicy() == false) return Rating;
 
             var baseRate = CalculateBaseRate();
@@ -31,23 +30,22 @@ namespace PassportCardT2.Policies
 
         private bool ValidatePolicy()
         {
-
             const int _minTravelDays = 0;
             const int _maxTravelDays = 180;
 
             if (Days <= _minTravelDays)
             {
-                Console.WriteLine("Travel policy must specify Days.");
+                Logger.WriteError("Travel policy must specify Days.");
                 return false;
             }
             if (Days > _maxTravelDays)
             {
-                Console.WriteLine($"Travel policy cannot be more than {_maxTravelDays} Days.");
+                Logger.WriteError($"Travel policy cannot be more than {_maxTravelDays} Days.");
                 return false;
             }
             if (string.IsNullOrEmpty(Country))
             {
-                Console.WriteLine("Travel policy must specify country.");
+                Logger.WriteError("Travel policy must specify country.");
                 return false;
             }
             return true;
